@@ -118,7 +118,7 @@ def saveAndExtractPackage(metaData):
 
 def installDependencies(pkgDir, dependencies='dependencies'):
     # Recursive install dependencies
-    print 'Checking %s for %s ...' % (dependencies, os.path.basename(pkgDir))
+    print('Checking %s for %s ...' % (dependencies, os.path.basename(pkgDir)))
     metaData = json.loads(open(os.path.join(pkgDir, 'package.json'), 'r').read())
     for dep in metaData.get(dependencies, []):
         install(dep)
@@ -158,7 +158,7 @@ def update():
             install(pkg['name'])
 
 def usage():
-    print ("""
+    print("""
 Usage:
   python ryppi.py deps                  - Install dependencies from package.json file.
   python ryppi.py devDeps               - Install development dependencies from package.json file.
