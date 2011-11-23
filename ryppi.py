@@ -55,7 +55,7 @@ def my_nts(s, encoding, errors):
       return
     return s.decode(encoding, errors)
 
-modules_dir = r'.\node_modules'
+modules_dir = 'node_modules'
 tmp_dir = os.path.join(modules_dir, '.tmp')
 
 def cleanupDir(cleanPath):
@@ -118,7 +118,7 @@ def saveAndExtractPackage(metaData):
 
 def installDependencies(pkgDir, dependencies='dependencies'):
     # Recursive install dependencies
-    print('Checking %s for %s ...' % (dependencies, pkgDir.split('\\')[-1]))
+    print 'Checking %s for %s ...' % (dependencies, os.path.basename(pkgDir))
     metaData = json.loads(open(os.path.join(pkgDir, 'package.json'), 'r').read())
     for dep in metaData.get(dependencies, []):
         install(dep)
@@ -137,7 +137,7 @@ def get_installed():
     return meta
 
 def install(pkg):
-    # Installs pkg(s) into .\node_modules
+    # Installs pkg(s) into node_modules
     meta = getMetaDataForPkg(pkg)
     destPath = saveAndExtractPackage(meta)
     installDependencies(destPath)
